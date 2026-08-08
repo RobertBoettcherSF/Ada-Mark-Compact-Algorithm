@@ -79,7 +79,9 @@ package body Mark_Compact is
       for I in Heap'Range loop
          if Heap(I).Allocated and then Heap(I).Marked then
             Heap(I).Forwarding_Address := Free_Ptr;
-            Free_Ptr := Free_Ptr + 1;
+            if Free_Ptr < Heap'Last then
+               Free_Ptr := Free_Ptr + 1;
+            end if;
          end if;
       end loop;
 
