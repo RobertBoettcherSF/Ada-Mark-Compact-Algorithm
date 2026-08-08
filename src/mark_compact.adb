@@ -129,9 +129,25 @@ package body Mark_Compact is
 
    --------------------------------------------------------------------------
    -- TWO-FINGER (Swapping Compaction)
+   --
+   -- This algorithm uses two pointers working from opposite ends of the heap:
+   -- - Free: Starts at the beginning, points to the next hole (unallocated slot)
+   -- - Scan: Starts at the end, searches backward for live objects
+   --
+   -- When Scan finds a live object and Free finds a hole, the object is
+   -- moved (swapped) into the hole. This compacts the heap in two passes:
+   -- 1. First pass: Move live objects from end to holes at front
+   -- 2. Second pass: Update all references to use new addresses
+   --
+   -- Time Complexity: O(n) where n is the number of heap objects
+   -- Space Complexity: O(1) - in-place, no additional storage needed
+   -- Order Preservation: No - does not maintain original allocation order
+   -- Requirement: Works only with fixed-size objects (which our model uses)
    --------------------------------------------------------------------------
    procedure Compact_Two_Finger (Heap : in out Heap_Array) is
+      -- Free pointer: starts at beginning, finds holes to fill
       Free : Address := Heap'First;
+      -- Scan pointer: starts at end, finds live objects to move
       Scan : Address := Heap'Last;
       High_Water_Mark : Address := Heap'First;
    begin

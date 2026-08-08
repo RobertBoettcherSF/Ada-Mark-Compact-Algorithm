@@ -1,3 +1,16 @@
+-- main.adb
+-- Demonstration program for the Mark-Compact Garbage Collection algorithm.
+--
+-- This program demonstrates the basic usage of the mark-compact GC:
+-- 1. Initialize a heap
+-- 2. Allocate objects
+-- 3. Create an object graph with references
+-- 4. Run the mark phase from root references
+-- 5. Run compaction to reclaim unused memory
+--
+-- The demo creates 3 objects where Obj1 -> Obj3, and only Obj1 is reachable
+-- from the root. After mark-compact, Obj2 (unreachable) should be reclaimed.
+
 with Ada.Text_IO; use Ada.Text_IO;
 with Mark_Compact; use Mark_Compact;
 

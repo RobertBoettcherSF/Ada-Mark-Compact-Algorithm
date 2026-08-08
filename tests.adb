@@ -1,3 +1,18 @@
+-- tests.adb
+-- Verification and Validation (V&V) Test Suite for Mark-Compact GC
+--
+-- This test suite employs a "prove the code wrong" philosophy:
+-- Each test starts with the assumption that the code is broken or handles
+-- edge cases incorrectly. The test then attempts to disprove this assumption.
+-- A PASS result means our pessimistic assumption was proven false.
+--
+-- Test Categories:
+-- - Tests 1, 4, 6: Edge case guarding (empty heap, boundaries)
+-- - Tests 2, 5, 7: Functional correctness (marking, compaction, references)
+-- - Test 3: Cycle and graph safety (circular references)
+-- - Test 8: Error handling (invalid inputs)
+-- - Test 9: Stress testing (100% heap capacity)
+
 with Ada.Text_IO; use Ada.Text_IO;
 with Mark_Compact; use Mark_Compact;
 

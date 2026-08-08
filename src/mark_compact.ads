@@ -1,10 +1,18 @@
 -- mark_compact.ads
 -- Specification for the Mark-Compact Garbage Collection algorithm.
 -- Includes both Sliding (LISP 2) and Swapping (Two-Finger) compaction variants.
+--
+-- This package provides a complete implementation of mark-compact garbage collection
+-- with strong typing to prevent memory corruption. The Address type uses a constrained
+-- integer range to ensure all memory accesses are bounds-checked at runtime.
 
 package Mark_Compact is
 
-   -- Strong typing for memory management
+   -- Memory Management Types
+   -- Max_Heap_Size defines the maximum number of objects the heap can hold
+   -- Address type includes an extra slot (Max_Heap_Size + 1) to accommodate
+   -- the Free_Ptr variable in compaction algorithms, which needs to point
+   -- one past the last valid heap address
    Max_Heap_Size : constant Positive := 1000;
    type Address is range 0 .. Max_Heap_Size + 1;
    Null_Address : constant Address := 0;
