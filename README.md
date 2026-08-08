@@ -144,5 +144,6 @@ Contributions are welcome! Please feel free to submit issues or pull requests.
 ## References
 
 - [Garbage Collection: Algorithms for Automatic Dynamic Memory Management](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) - Wikipedia
+- [Mark Compact Algorithm (Wikipedia)](https://en.wikipedia.org/wiki/Mark-compact_algorithm)
 - LISP 2 Algorithm: Originally described in "LISP 1.5 Programmer's Manual" by John McCarthy et al.
 - Two-Finger Algorithm: A classic compaction technique for fixed-size objects
