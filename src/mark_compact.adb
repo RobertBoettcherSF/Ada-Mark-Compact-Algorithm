@@ -115,11 +115,14 @@ package body Mark_Compact is
       end loop;
 
       -- Nullify the remainder of the heap
-      for I in Free_Ptr .. Heap'Last loop
-         Heap(I).Allocated := False;
-         Heap(I).Marked := False;
-         Heap(I).Refs := (others => Null_Address);
-      end loop;
+      -- Only nullify if Free_Ptr is within heap bounds
+      if Free_Ptr <= Heap'Last then
+         for I in Free_Ptr .. Heap'Last loop
+            Heap(I).Allocated := False;
+            Heap(I).Marked := False;
+            Heap(I).Refs := (others => Null_Address);
+         end loop;
+      end if;
    end Compact_LISP2;
 
    --------------------------------------------------------------------------
