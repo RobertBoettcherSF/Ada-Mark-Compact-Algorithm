@@ -103,7 +103,7 @@ begin
    Put_Line("TEST 8 - Input Robustness");
    Put_Line("  8.1 Assume invalid root address doesn't raise exception");
    begin
-      R(1) := Max_Heap_Size; -- Not allocated yet
+      R(1) := Address(Max_Heap_Size); -- Not allocated yet
       Mark(H, R);
       Assert(False, "Exception not raised");
    exception
@@ -123,7 +123,7 @@ begin
       end;
    end loop;
    Compact_LISP2(H);
-   Assert(H(Max_Heap_Size).Allocated, "Memory corrupted at boundary");
+   Assert(H(Address(Max_Heap_Size)).Allocated, "Memory corrupted at boundary");
    Put_Line("      PASS: 100% capacity compaction runs without memory loss");
 
    Put_Line("=======================================================================");
