@@ -6,7 +6,7 @@ package Mark_Compact is
 
    -- Strong typing for memory management
    Max_Heap_Size : constant Positive := 1000;
-   type Address is range 0 .. Max_Heap_Size;
+   type Address is range 0 .. Max_Heap_Size + 1;
    Null_Address : constant Address := 0;
 
    -- Up to 4 references per object for the object graph
